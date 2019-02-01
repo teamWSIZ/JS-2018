@@ -1,11 +1,11 @@
 
-<div class="col-sm-12 bg-geld">
+<div class="col-sm-12 ">
     <div class="row">
 
         <div class="col-sm-2">
         </div>
-        <div class="col-sm-8" style="height: 1000px" >
-            <div class="card" style="background-color: rgba(255,255,255,0.7)">
+        <div class="col-sm-8 text-white" style="height: 1000px" >
+            <div class="card" style="background-color: rgba(255,255,255,0.5)">
                 <div class="card-header h3">
                     Edycja testu "{{test.alias}}" ({{test.testid}})
                     <i class="fas fa-sync-alt clickable float-sm-right"></i>
@@ -26,31 +26,34 @@
                         <tr ng-repeat="item in test.items">
                             <td><input type="text" class="form-control"  ng-model="item.from"></td>
                             <td><input type="text" class="form-control"  ng-model="item.to"></td>
-                            <td><i class="fas fa-trash clickable"></i></td>
+                            <td><i class="fas fa-trash clickable" ng-click="deleteQuestion(item)"></i></td>
                         </tr>
 
                         </tbody>
                     </table>
                     <div class="row">
-                        <div class="col-sm-3 ">
+                        <div class="col-sm-6 ">
+                            <div class="form-group row">
+                                <label for="nazwa_testu" class="col-sm-3 col-form-label">Nazwa testu</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="nazwa_testu" ng-model="testAlias">
+                                </div>
+                            </div>
                             <!--<input type="text" class="form-control col-10 float-right" placeholder="dolna granica"  ng-model="iLow">-->
                         </div>
-                        <div class="col-sm-3 ">
-                            <!--<input type="text" class="form-control col-10 float-right" placeholder="górna granica"  ng-model="iHigh">-->
-                        </div>
-                        <div class="col-sm-3 ">
-                            <!--<input type="text" class="form-control col-10 float-right" placeholder="pesel"  ng-model="iPesel">-->
-                        </div>
-                        <div class="col-sm-3">
-                            <button class="btn btn-outline-info" ng-click="addQuestion()"> (+) </button>
-                            <button class="btn btn-outline-info" ng-click="loadTest()">Wczytaj test</button>
-                            <button class="btn btn-outline-info" ng-click="saveTest()">Zapisz test</button>
+                        <div class="col-sm-6">
+                            <button class="btn btn-info" ng-click="addQuestion()"> (+) </button>
+                            <button class="btn btn-info" ng-click="loadTest()">Wczytaj test</button>
+                            <button class="btn btn-info" ng-click="saveTest()">Zapisz test</button>
+                            <button class="btn btn-info" ng-click="shuffleTable(tablica)">Losuj</button>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer ">
-                    Debug... <br/>
-                    <textarea class="form-control" id="textArea1" rows="5" style="width:100%">{{test}} </textarea>
+                    Test... <br/>
+                    <textarea class="form-control boxed" id="textArea1" rows="5" style="width:100%">{{test}} </textarea>
+                    Tablica... <br/>
+                    <textarea class="form-control boxed" id="textArea2" rows="5" style="width:100%">{{tablica}} </textarea>
                 </div>
             </div>
         </div>
