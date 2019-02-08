@@ -7,10 +7,24 @@
             <div class="col-sm-8" style="height: 1000px" >
                 <div class="card trx" >
                     <div class="card-header h3">
-                        Edycja testu "{{editedTest.alias}}" ({{editedTest.testid}})
-                        <i class="fas fa-sync-alt clickable float-sm-right text-info"></i>
-                        <i class="fas fa-certificate clickable float-sm-right mr-2 text-info"
-                           title="Nowy test"></i>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                Edycja testu "{{editedTest.alias}}" ({{editedTest.testid}})
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       placeholder="(wpisz alias testu)"
+                                       ng-model="selectedAlias">
+
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fas fa-sync-alt clickable float-sm-right text-info"></i>
+                                <i class="fas fa-certificate clickable float-sm-right mr-2 text-info"
+                                   title="Nowy test" ng-click="newTest()"></i>
+
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-body">
                         <table class="table table-sm table-hover">
