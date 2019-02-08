@@ -55,6 +55,11 @@ body, html {
     background-size: cover;
 }
 
+.trx {
+    background-color: rgba(255, 255, 255, 0.3);
+
+}
+
 
 .boxed {
     border-radius: 3px;

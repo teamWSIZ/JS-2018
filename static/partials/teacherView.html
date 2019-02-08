@@ -5,10 +5,23 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8" style="height: 1000px" >
-                <div class="card" style="background-color: rgba(255,255,255,0.3)">
+                <div class="card trx" >
                     <div class="card-header h3">
-                        Edycja testu "{{test.alias}}" ({{test.testid}})
-                        <i class="fas fa-sync-alt clickable float-sm-right"></i>
+                        <div class="row">
+                            <div class="col-sm-3">Edycja testu</div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control trx" placeholder="alias testu"
+                                       ng-model="selectAlias"
+                                >
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fas fa-sync-alt clickable float-sm-right mr-2 text-info"></i>
+                                <i class="fas fa-certificate clickable float-sm-right mr-2 text-info" title="Nowy test" ng-click="newTest()"></i>
+                            </div>
+                        </div>
+
+
+
                     </div>
                     <div class="card-body">
                         <table class="table table-sm table-hover">
@@ -23,28 +36,27 @@
 
                             <!--bs4: default, primary, info, success, warning, danger -->
                             <!--dla tekstu: text-(kolor)  , albo bg-(kolor)    -->
-                            <tr ng-repeat="item in test.items">
+                            <tr ng-repeat="item in editedTest.items">
                                 <td><input type="text" class="form-control"  ng-model="item.from"></td>
                                 <td><input type="text" class="form-control"  ng-model="item.to"></td>
-                                <td><i class="fas fa-trash clickable"></i></td>
+                                <td><i class="fas fa-trash fa-lg clickable align-middle"></i></td>
                             </tr>
 
                             </tbody>
                         </table>
                         <div class="row">
                             <div class="col-sm-6 ">
-                                <!--<input type="text" class="form-control col-10 float-right" placeholder="dolna granica"  ng-model="iLow">-->
                             </div>
                             <div class="col-sm-6 text-right">
                                 <button class="btn btn-info" ng-click="addQuestion()"> (+) </button>
-                                <button class="btn btn-info" ng-click="loadTest()">Wczytaj test</button>
-                                <button class="btn btn-info" ng-click="saveTest()">Zapisz test</button>
+                                <button class="btn btn-info" ng-click="loadTest('dd')">Wczytaj test</button>
+                                <button class="btn btn-info" ng-click="saveTest(editedTest)">Zapisz test</button>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer ">
                         Debug... <br/>
-                        <textarea class="form-control" id="textArea1" rows="5" style="width:100%">{{test}} </textarea>
+                        <textarea class="form-control" id="textArea1" rows="5" style="width:100%">{{editedTest}} </textarea>
                     </div>
                 </div>
             </div>

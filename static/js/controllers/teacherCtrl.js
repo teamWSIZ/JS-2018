@@ -8,108 +8,50 @@ angular.module('myApp.controllers').controller('teacherCtrl',
             // const URL = "https://guam.wsi.edu.pl:1111";
             const URL = "http://basra.wsi.edu.pl:1111";
 
-            $scope.test = {};   //aktualnie edytowany test
-
+            $scope.editedTest = {};   //aktualnie edytowany editedTest
+            $scope.testAlias = '';
+            $scope.editAlias = false;
+            $scope.selectAlias = undefined;
 
 
             /////////////////////////////////////////////////////////////
+            //operacje zapisu/odczytu na testach
 
-            //Filtruje tablicę dochodów tak by pozostali tylko gracze o dochodach między low i high
-            //zwraca przefiltrowaną tablicę
-            let filterIncomesRange = function (incomes, low, high) {
-                console.log('Filtrowanie po range low=' + low + ' high=' + high);
-                let wyfiltrowane = [];
-                for (let player of incomes) {
-                    if (player.dochod >= low && player.dochod <= high) {
-                        wyfiltrowane.push(player);
-                    }
-                }
-                return wyfiltrowane;
+            $scope.newTest = function () {
+                $scope.editedTest = { 'items': []};
+                $scope.testAlias = '(nowy)';
             };
 
-            //Filtruje tablicę dochodów tak by pozostali tylko gracze o peselach zaczynających się na `prez
-            let filterIncomesPesel = function (incomes, pre) {
-                console.log('Filtrowanie po peselu; szukany prefix=' + pre);
-                let wyfiltrowane = [];
-                for (let player of incomes) {
-                    if (player.pesel.startsWith(pre)) {
-                        wyfiltrowane.push(player);
-                    }
-                }
-                return wyfiltrowane;
-            };
-
-
-            //funkcja biorąca tablicę 'obiektów dochodowych', i filtrująca: od dołu, góry i po peselu
-            $scope.filterIncomes = function (incomes) {
-                console.log('filtruję tablicę' + JSON.stringify(incomes));
-                let filterLow = true;
-                let filterHi = true;
-                let filterPesel = true;
-
-                if (filterLow) {
-                    incomes = filterIncomesRange(incomes, $scope.iLow, $scope.iHigh);
-                }
-                console.log('Wyfiltrowane:' + JSON.stringify(incomes));
-
-                if (filterPesel) {
-                    incomes = filterIncomesPesel(incomes, $scope.iPesel);
-                }
-                console.log('Wyfiltrowane:' + JSON.stringify(incomes));
-                $scope.wynik = incomes;
-            };
-
-
-
-            $scope.wyszukaj = function () {
-                $scope.wynik = [];
-                for (let player of $scope.dane) {
-                    if ($scope.iLow !== undefined) {    //sprawdzenie czy coś zostało wpisane w pole iLow na UI
-                        if (player.dochod >= $scope.iLow) {
-                            $scope.wynik.push(player);
-                        }
-                    }
-                }
-            };
-
-            //wyszukać po peselu (pesel zaczyna się od...)
-
-            let solve2 = function (arr) {
-                let g = "ga";
-                if (g.startsWith("g")) {
-                    console.log("OK");
-                }
-
-            };
-
+            //dodaje nowe pytanie na koniec testu
             $scope.addQuestion = function () {
-                $scope.test.items.push({"from": "", "to": ""});
+                $scope.editedTest.items.push({"from": "", "to": ""});
             };
 
-            $scope.loadTest = function () {
+            //wczytuje editedTest o zadanym aliasie z systemu backendowego pod adresem `URL`
+            $scope.loadTest = function (aliasOfTest) {
                 $http({
                     url: URL + '/tests',
                     method: 'GET',
                     params: {
-                        alias: "dd"
+                        alias: aliasOfTest
                     }
                 }).success(function (dane) {
-                    $scope.test = dane;
+                    $scope.editedTest = dane;
                 });
             };
 
-
-            //ta funkcja zapisuje podany `test` w systemie backendowym pod adresem `URL`
-            $scope.saveTest = function() {
-                let testDoZapisania = $scope.test;
+            //zapisuje podany `editedTest` w systemie backendowym pod adresem `URL`
+            $scope.saveTest = function (testDoZapisania) {
                 $http({
                     url: URL + '/tests',
                     method: 'POST',
                     data: JSON.stringify(testDoZapisania)
-                }).success(function(data){
+                }).success(function (data) {
                     console.log('Test zosatał zapisany');
                 });
-            }
+            };
+
+
 
 
         }
