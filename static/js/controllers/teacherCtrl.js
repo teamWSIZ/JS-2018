@@ -3,7 +3,7 @@ angular.module('myApp.controllers').controller('teacherCtrl',
         function ($rootScope, $scope, $http, $window, $log) {
             /////////////////////////////////////////////////////////////
             $scope.M = {};
-            $scope.wynik = [];
+            $scope.wynik = [] ;
             // const URL = "https://guam.wsi.edu.pl:1111";
             const URL = "http://basra.wsi.edu.pl:1111";
 

@@ -1,7 +1,20 @@
 
+- zaimportować (przez git) projekt JS-2018 z github-a,
+- stworzyć swój branch i na nim pracować
 
-... nie działa pod FFoxem na Win12
+(input-y (do zmiennych), dodawnie obiektów do tabeli, prezentacja tabeli, szata graficzna)
 
--------
 
-(sprawdzenie czy działa dodawanie graczy)
+====================================================================
+|                                                                  |
+      |lista_zamówień|
+      user    |   danie    |    sztuk
+      .
+      .
+      .
+      .
+      .
+ -------------------------------------------------------------
+     Dodawanie zamówień ......(user)....  [sztuk]  [pizza|kebab|falafel]<---buttony
+
+
